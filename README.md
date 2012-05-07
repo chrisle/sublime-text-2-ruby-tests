@@ -41,17 +41,17 @@ Makes split mode work like Gary Bernhardt's.  On his screencast "Destroy All Sof
 
 The default configuration will behave normally.  To enable the "Gary Bernhardt split mode" change 
 
-  { "keys": ["super+ctrl+period"], 
-    "command": "switch_between_code_and_test", 
-    "args": {
-      "split_view": true,
-      "gary_bernhardt_split_mode": true },
-    "context" : [{ 
-      "key": "selector", 
-      "operator": "equal", 
-      "operand": "source.ruby", 
-      "match_all": true }]
-  }
+    { "keys": ["super+ctrl+period"], 
+      "command": "switch_between_code_and_test", 
+      "args": {
+        "split_view": true,
+        "gary_bernhardt_split_mode": true },
+      "context" : [{ 
+        "key": "selector", 
+        "operator": "equal", 
+        "operand": "source.ruby", 
+        "match_all": true }]
+    }
 
 
 Bundler support:
