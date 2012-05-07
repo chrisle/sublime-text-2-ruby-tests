@@ -53,6 +53,9 @@ The default configuration will behave normally.  To enable the "Gary Bernhardt s
         "match_all": true }]
     }
 
+A :30 video demo is available on YouTube:
+http://www.youtube.com/watch?v=I_LZNorfCQ4&feature=youtu.be
+
 
 Bundler support:
 ------------
