@@ -8,6 +8,7 @@ import sublime
 import sublime_plugin
 
 output_view = None
+gary_bernhardt_split_toggle = False
 
 class AsyncProcess(object):
   def __init__(self, cmd, listener):
@@ -306,16 +307,29 @@ class VerifyRubyFile(BaseRubyTask):
 
 class SwitchBetweenCodeAndTest(BaseRubyTask):
   def is_enabled(self): return 'switch_to_test' in self.file_type().features()
-  def run(self, args, split_view):
+  def run(self, args, split_view, gary_bernhardt_split_mode):
+    global gary_bernhardt_split_toggle
     possible_alternates = self.file_type().possible_alternate_files()
     alternates = self.project_files(lambda file: file in possible_alternates)
     if alternates:
       if split_view:
-        self.window().run_command('set_layout', {
-                              "cols": [0.0, 0.5, 1.0],
-                              "rows": [0.0, 1.0],
-                              "cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
-                          })
+        if gary_bernhardt_split_mode:
+          if gary_bernhardt_split_toggle == False:
+            cols = [0.0, 0.4, 1.0]
+          else:
+            cols = [0.0, 0.6, 1.0]
+          gary_bernhardt_split_toggle = not gary_bernhardt_split_toggle
+          self.window().run_command('set_layout', {
+                                "cols": cols,
+                                "rows": [0.0, 1.0],
+                                "cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+                            })
+        else:
+          self.window().run_command('set_layout', {
+                                "cols": [0.0, 0.5, 1.0],
+                                "rows": [0.0, 1.0],
+                                "cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+                            })
         self.window().focus_group(1)
       if len(alternates) == 1:
         self.window().open_file(alternates.pop())

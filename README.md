@@ -33,6 +33,27 @@ You can specify different binary for each type of test to use.
 
 Make a copy of `RubyTest.sublime-settings` file to `~/Library/Application Support/Sublime Text 2/Packages/User/` and make your changes.
 
+
+Gary Bernhardt Split Mode
+-------------------------
+
+Makes split mode work like Gary Bernhardt's.  On his screencast "Destroy All Software" his vim configuration split moves depending on which file he's working on.
+
+The default configuration will behave normally.  To enable the "Gary Bernhardt split mode" change 
+
+  { "keys": ["super+ctrl+period"], 
+    "command": "switch_between_code_and_test", 
+    "args": {
+      "split_view": true,
+      "gary_bernhardt_split_mode": true },
+    "context" : [{ 
+      "key": "selector", 
+      "operator": "equal", 
+      "operand": "source.ruby", 
+      "match_all": true }]
+  }
+
+
 Bundler support:
 ------------
 First be sure that you have your copy of `RubyTest.sublime-settings` placed in User folder (refer to Settings above) and fill it  with below code:
